@@ -1,0 +1,7 @@
+# Mosquitto를 설치할 베이스 이미지를 사용
+FROM eclipse-mosquitto
+
+# Mosquitto 설정 파일 복사
+COPY mosquitto.conf /mosquitto/config/mosquitto.conf
+
+EXPOSE 1883
