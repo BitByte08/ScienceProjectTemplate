@@ -5,8 +5,8 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios.get('http://mqtt-fastapi:8000/')
-      .then(response => setMessage(response.data.message))
+    axios.get('/api')
+      .then(response => console.log(response.data))
       .catch(error => console.error(error));
   }, []);
 
