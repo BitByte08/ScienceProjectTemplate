@@ -90,7 +90,7 @@ void loop() {
   if (now - lastMsg > 2000) {
     uint16_t lightValue = analogRead(32);
     snprintf (msg, MSG_BUFFER_SIZE, "%d",lightValue);
-    client.publish("Light", msg);
+    client.publish("client/ldr1", msg);
     lastMsg = millis();
   }
 }

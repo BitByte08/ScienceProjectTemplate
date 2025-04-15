@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
+import MainLayout from "./layouts/MainLayout";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [message, setMessage] = useState('');
+  return(
+    <QueryClientProvider client={queryClient}>
+      <MainLayout>
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api')
-      .then(response => console.log(response.data))
-      .catch(error => console.error(error));
-  }, []);
-
-  return (
-    <div>
-      <h1>React + FastAPI + MQTT</h1>
-      <p>FastAPI 응답: {message}</p>
-    </div>
-  );
+      </MainLayout>
+    </QueryClientProvider>
+  )
 }
 
 export default App;
