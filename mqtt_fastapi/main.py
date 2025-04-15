@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 @app.on_event("startup")
-def startup_event():
+async def startup_event():
     global mqtt
     mqtt = MQTTClient(
         broker_url="mqtt-broker",
@@ -29,10 +29,15 @@ def startup_event():
     )
     mqtt.set_message_handler(handle_mqtt_message)
     mqtt.start()
+    mysql_client.connect()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    mysql_client.close()
 
 @app.get("/client/all")
 def get_client_all():
-    
+
 @app.get("/data")
 def get_data():
     return {"data":latest_data}
