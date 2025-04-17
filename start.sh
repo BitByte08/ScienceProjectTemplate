@@ -3,7 +3,7 @@
 docker network create app-network 2>/dev/null || true
 
 
-docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=qwer -e MYSQL_DATABASE=DB -p 3306:3306 --network app-network mysql:8.0
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=qwer -e MYSQL_DATABASE=DB -p 3306:3306 --network app-network mysql:8.0
 # broker
 docker build -t mqtt-broker ./broker
 docker rm -f mqtt-broker 2>/dev/null
