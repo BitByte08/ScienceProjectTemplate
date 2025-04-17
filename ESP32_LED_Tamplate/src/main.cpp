@@ -6,7 +6,7 @@
 
 const char* ssid = "bssm_free";
 const char* password = "bssm_free";
-const char* mqtt_server = "10.150.3.15";
+const char* mqtt_server = "mqtt.science-project.kro.kr";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -87,7 +87,7 @@ void loop() {
   client.loop();
 
   unsigned long now = millis();
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 10000) {
     uint16_t lightValue = analogRead(32);
     snprintf (msg, MSG_BUFFER_SIZE, "{\"brightness\" : %d}",lightValue);
     client.publish("client/ldr1", msg);
